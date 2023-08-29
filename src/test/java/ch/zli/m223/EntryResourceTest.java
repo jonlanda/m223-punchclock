@@ -15,53 +15,53 @@ import static org.hamcrest.CoreMatchers.is;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class) // Specify the order of test methods
 public class EntryResourceTest {
 
-    @Test
-    @Order(1)
-    public void testIndexEndpoint() {
-        given()
-                .when().get("/entries")
-                .then()
-                .statusCode(200)
-                .body(is("[]"));
-    }
+        @Test
+        @Order(1)
+        public void testIndexEndpoint() {
+                given()
+                                .when().get("/entries")
+                                .then()
+                                .statusCode(200)
+                                .body(is("[]"));
+        }
 
-    @Test
-    @Order(2)
-    public void testCreateEndpoint() {
-        given().contentType(ContentType.JSON)
-                .body("{\"checkIn\": \"2022-03-10T12:15:50\",\"checkOut\": \"2022-03-10T12:15:50\"}")
-                .when().post("/entries")
-                .then()
-                .statusCode(200)
-                .body(is("{\"id\":1,\"checkIn\":\"2022-03-10T12:15:50\",\"checkOut\":\"2022-03-10T12:15:50\"}"));
-    }
+        @Test
+        @Order(2)
+        public void testCreateEndpoint() {
+                given().contentType(ContentType.JSON)
+                                .body("{\"checkIn\": \"2022-03-10T12:15:50\",\"checkOut\": \"2022-03-10T12:15:50\"}")
+                                .when().post("/entries")
+                                .then()
+                                .statusCode(200)
+                                .body(is("{\"id\":1,\"checkIn\":\"2022-03-10T12:15:50\",\"checkOut\":\"2022-03-10T12:15:50\",\"category\":null,\"tags\":null}"));
+        }
 
-    @Test
-    @Order(3)
-    public void testDeleteEndpoint() {
-        given().contentType(ContentType.JSON)
-                .body("{\"checkIn\": \"2022-03-10T12:15:50\",\"checkOut\": \"2022-03-10T12:15:50\"}")
-                .when().post("/entries")
-                .then()
-                .statusCode(200)
-                .body(is("{\"id\":2,\"checkIn\":\"2022-03-10T12:15:50\",\"checkOut\":\"2022-03-10T12:15:50\"}"));
+        @Test
+        @Order(3)
+        public void testDeleteEndpoint() {
+                given().contentType(ContentType.JSON)
+                                .body("{\"checkIn\": \"2022-03-10T12:15:50\",\"checkOut\": \"2022-03-10T12:15:50\"}")
+                                .when().post("/entries")
+                                .then()
+                                .statusCode(200)
+                                .body(is("{\"id\":2,\"checkIn\":\"2022-03-10T12:15:50\",\"checkOut\":\"2022-03-10T12:15:50\",\"category\":null,\"tags\":null}"));
 
-        given()
-                .when().delete("/entries/1")
-                .then()
-                .statusCode(204);
-    }
+                given()
+                                .when().delete("/entries/1")
+                                .then()
+                                .statusCode(204);
+        }
 
-    @Test
-    @Order(4)
-    public void testEditEndpoint() {
+        @Test
+        @Order(4)
+        public void testEditEndpoint() {
 
-        given().contentType(ContentType.JSON)
-                .body("{\"id\":1,\"checkIn\":\"2022-03-11T12:15:50\",\"checkOut\": \"2022-03-10T12:15:50\"}")
-                .when().put("/entries")
-                .then()
-                .statusCode(200)
-                .body(is("{\"id\":1,\"checkIn\":\"2022-03-11T12:15:50\",\"checkOut\":\"2022-03-10T12:15:50\"}"));
-    }
+                given().contentType(ContentType.JSON)
+                                .body("{\"id\":1,\"checkIn\":\"2022-03-11T12:15:50\",\"checkOut\": \"2022-03-10T12:15:50\"}")
+                                .when().put("/entries")
+                                .then()
+                                .statusCode(200)
+                                .body(is("{\"id\":1,\"checkIn\":\"2022-03-11T12:15:50\",\"checkOut\":\"2022-03-10T12:15:50\",\"category\":null,\"tags\":null}"));
+        }
 
 }
